@@ -1,9 +1,11 @@
-/*img.projector {*/
-/*    !*display: block;*!*/
-/*    !*margin-left: auto;*!*/
-/*    !*margin-right: auto;*!*/
-/*    !*width: 100px;*!*/
-/*    !*height: 100px;*!*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*}*/
+.projector {
+    width: 100%;
+    height: 100%;
+}
+ * {
+background-color: #6cffe4;
+}
+
+ .hidden {
+     display: none;
+ }
