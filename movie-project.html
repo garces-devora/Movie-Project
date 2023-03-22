@@ -4,32 +4,33 @@
     <meta charset="UTF-8">
     <title>Movie Project</title>
 
-<!--Bootstrap-->
+    <!--Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
+    <!-- CSS-->
     <link rel="stylesheet" href="movie-project.css">
+
 </head>
 <body>
 
-<div class="loading-image"><img src="images/loading-image.gif" class="projector" id="reload"></div>
-
-
 <form class="">
     <label for="rating"></label>
-    <select id="rating" class="form-select col-12 bg-color-"
+    <select id="rating" name="rating" class="form-select col-12 bg-color-"
             aria-label="Default select example" style="font-family: Quicksand, sans-serif">
-        <option >1</option>
-        <option >2</option>
-        <option >3</option>
-        <option >4</option>
-        <option >5</option>
+        <option >*</option>
+        <option >**</option>
+        <option >***</option>
+        <option >****</option>
+        <option >*****</option>
     </select>
-    <input type="text" id="add-movie" placeholder="Add movie here">
+    <input type="text" id="add-movie" placeholder="Add movie here" value="">
     <input type="submit" id="submit-movie">
 </form>
 
-<div id="movieList"></div>
+<div class="loading-image"><img src="images/loading-image.gif" class="projector" id="reload"></div>
+
+<div id="movies"></div>
 
 <!--jQuery-->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
