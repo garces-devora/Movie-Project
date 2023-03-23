@@ -2,10 +2,80 @@
     width: 100%;
     height: 100%;
 }
- * {
+
+ body {
 background-color: #6cffe4;
 }
 
  .hidden {
      display: none;
  }
+
+
+ .moviecontainer{
+     font-family: 'El Messiri', sans-serif;
+     border: 2px solid ghostwhite;
+     box-shadow: 5px  5px 5px dimgray;
+     margin: 2em;
+     padding: 1em;
+     display: flex;
+     flex-direction: column;
+     text-align: center;
+     align-items: center;
+     background-color: deepskyblue;
+     width: 200px;
+     flex-wrap: wrap;
+     justify-content: space-evenly;
+ }
+
+ h5, h3, span{
+     background-color: deepskyblue;
+ }
+
+ button{
+     color: ghostwhite;
+     background-color: cadetblue;
+     border-radius: 15%;
+     border: 1px solid lightgray;
+     padding: 5px 5px;
+     margin-bottom: 1em;
+
+ }
+
+ .website-header {
+     font-family: 'Caveat', cursive;
+     width: auto;
+     padding: 50px;
+     margin: 0%;
+     font-size: 70px;
+     text-align: center;
+     background-color: rgba(128, 128, 128, 0.59);
+ }
+
+ form {
+     margin: 2em;
+     padding: 2em;
+     display: flex;
+     justify-content: center;
+ }
+
+ #movies {
+     display: flex;
+     flex-wrap: wrap;
+     flex-direction: row;
+     justify-content: space-evenly;
+ }
+
+#rating, #add-movie, #add-genre, .movie-question {
+    margin-right: 1em;
+}
+
+.movie-question {
+    font-family: 'El Messiri', sans-serif;
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+.deleteBtn {
+    background-color: #b43d3d;
+}
