@@ -19,11 +19,14 @@ function getMovies() {
         .then(data => {
             console.log("before for loop:" + 'https://pollen-pumped-brace.glitch.me/movies');
             let html='';
-            // html = '<div class="row d-flex flex-wrap">';
             for (i = 0; i < data.length; i++) {
-                // console.log(data[i].title);
+                var moviePoster = "";
+                fetch("http://www.omdbapi.com/?apikey=921dbb09&s=$(data[i].title)").then(resp => resp.json()).then(data => {
+                    moviePoster = data.Search[0].Poster;
+                    console.log(data);
+                });
                 html += `<span class="moviecontainer" >`
-                html += `<h2 class="card-title current-movie">${data[i].title}</h2>`
+                html += `<h2 class="card-title current-movie"><img value="moviePoster"></img>${data[i].title}</h2>`
                 html += `<h4 class="card-text">Genre: <span>${data[i].genre}</span></h4>`
                 html += `<h4 class="card-text">Rating: <span class="rating">${data[i].rating}</span></h4>`
                 html += `<button name="Edit" type="submit" value="${data[i].id}" class="editBtn " >Edit Details</button>`
@@ -32,7 +35,7 @@ function getMovies() {
                 html += `</span>`
 
             }
-            // html += `</div>`
+
            $("#movies").html(html);
             console.log(data);
 
@@ -68,9 +71,7 @@ function getMovies() {
                     if (keyPressed === 'Enter') {
                         let text = $(this).val();
                         let rateSelected = $("#ratingDropDown").val();
-                        // console.log(selectedRating) *Add to end of save changed button
                         editButton(changeId, text, rateSelected);
-                        // will come from save changes button
                     }
                 });
                 // Edit rating
@@ -79,7 +80,6 @@ function getMovies() {
                     if (keyPressed === 'Enter'){
                         let titleText = $(".editTitleText").val();
                         let rateSelected = $("#ratingDropDown").val();
-                        // console.log(selectedRating) *Add to end of save changed button
                         editButton(changeId, titleText, rateSelected);
                     }
                 });
@@ -134,8 +134,6 @@ function editButton(movieID, title, rating) {
         },
         body: JSON.stringify(editedButton)
     }).then(() => getMovies());
-    // // newTitle.value = "";
-    //     .then(() => getMovies())
 }
 
 submitNewMovie.addEventListener('click', newMovie);
