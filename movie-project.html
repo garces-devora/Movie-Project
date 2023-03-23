@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Movie Project</title>
 
+<!--    Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=El+Messiri&display=swap" rel="stylesheet">
+
     <!--Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
@@ -16,11 +21,12 @@
 
 <div>
 
+<header class="website-header"><img src="images/filmstrip-png.webp" height="100 px">Silver Screen Dreams <img src="images/filmstripflip.png" height="100 px"</header>
 </div>
 
 <form class="">
     <label for="rating"></label>
-    <select id="rating" name="rating" class="form-select col-12 bg-color-"
+    <select id="rating" name="rating" class="form-select col-12 mt-2 "
             aria-label="Default select example" style="font-family: Quicksand, sans-serif">
         <option >1</option>
         <option >2</option>
@@ -29,12 +35,13 @@
         <option >5</option>
     </select>
     <input type="text" id="add-movie" placeholder="Add movie here" value="">
+    <input type="text" id="add-genre" placeholder="Add genre here" value="">
     <input type="submit" id="submit-movie">
 </form>
 
 <div class="loading-image"><img src="images/loading-image.gif" class="projector" id="reload"></div>
 
-<div id="movies" class="row d-flex justify-content-center"></div>
+<div id="movies" class=""></div>
 
 <!--jQuery-->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>

@@ -3,6 +3,7 @@
 let refresh = $(`#reload`).toggleClass('hidden');
 let newRating = document.getElementById("rating");
 let newTitle = document.getElementById("add-movie");
+let newGenre = document.getElementById("add-genre");
 let submitNewMovie = document.querySelector("#submit-movie")
 let filterMovie = document.querySelector("#movies")
 getMovies();
@@ -18,19 +19,22 @@ function getMovies() {
         .then(data => {
             console.log("before for loop:" + 'https://pollen-pumped-brace.glitch.me/movies');
             let html='';
-
+            // html = '<div class="row d-flex flex-wrap">';
             for (i = 0; i < data.length; i++) {
                 // console.log(data[i].title);
-                html += `<div class="container">`
-                html += `<h3 class="card-title current-movie">Movie Title: ${data[i].title}</h3>`
-                html += `<h5 class="card-text">Rating: ${data[i].rating}</h5>`
-                html += `<button name="Edit" type="submit" value="${data[i].id}" class="editBtn" >Edit Details</button>`
-                html += `<button type="submit" value="${data[i].id}" class="saveBtn hidden" >Save Changes</button>`
-                html += `<button name="Delete" class="deleteBtn" type="submit" value="${data[i].id}"  >Delete Movie</button>`
-                html += `</div>`
+                html += `<span class="moviecontainer" >`
+                html += `<h2 class="card-title current-movie">${data[i].title}</h2>`
+                html += `<h4 class="card-text">Genre: <span>${data[i].genre}</span></h4>`
+                html += `<h4 class="card-text">Rating: <span class="rating">${data[i].rating}</span></h4>`
+                html += `<button name="Edit" type="submit" value="${data[i].id}" class="editBtn " >Edit Details</button>`
+                html += `<button type="submit" value="${data[i].id}" class="saveBtn hidden " >Save Changes</button>`
+                html += `<button name="Delete" class="deleteBtn " type="submit" value="${data[i].id}"  >Delete Movie</button>`
+                html += `</span>`
 
             }
-            movies.innerHTML = html;
+            // html += `</div>`
+           $("#movies").html(html);
+            console.log(data);
 
             // Delete button click event
             $('.deleteBtn').click(function(){
@@ -40,18 +44,20 @@ function getMovies() {
             //Edit btn click event
             $(".editBtn").click(function () {
                 let changeId = ($(this).val());
-                let title = $(this).parent().children('h3').first().html()
-                let rating = $(this).parent().children('5').first().html()
+                let title = $(this).parent().children('h2').first().html()
+                let rating = $(this).parent().children().children('.rating').first().html()
+                console.log(rating);
                 $(this).parent().children('.saveBtn').toggleClass('hidden')
                 $(this).toggleClass('hidden')
-                $(this).parent().children('h3').first().html(`<input type='text' value='${title}' class="editTitleText">`);
-                $(this).parent().children('h5').first().html(changeRating(rating));
+                $(this).parent().children('h2').first().html(`<input type='text' value='${title}' class="editTitleText">`);
+                $(this).parent().children('h4').first().html(changeRating(rating));
 
                 // Save button click event
-                $(".saveBtn").click(function () {
+                $(".saveBtn").click(function (event) {
+                    event.preventDefault();
                     let titleText = $('.editTitleText').val();
-                    let rateSelected = $("#ratingDropDown").val();
-                    let changeId = $('.delete-movie-id').val();
+                    let rateSelected = $(".selectingRate").val();
+                    let changeId = $(event.target).val();
                     editButton(changeId, titleText, rateSelected);
                 });
 
@@ -90,6 +96,7 @@ function newMovie(e) {
     event.preventDefault()
     let movieObj = {
         title: newTitle.value,
+        genre: newGenre.value,
         rating: newRating.value
     };
 
@@ -126,7 +133,7 @@ function editButton(movieID, title, rating) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(editedButton)
-    }).then(() => fetch('https://pollen-pumped-brace.glitch.me/movies')).then(resp => resp.json()).then(() => getMovies());
+    }).then(() => getMovies());
     // // newTitle.value = "";
     //     .then(() => getMovies())
 }
@@ -175,7 +182,7 @@ function changeRating(rating) {
     } else if (rating == 5) {
         html += `<select id="ratingDropDown" class="selectingRate form-select" >
             <option value="1">1</option>
-            <option value="2">2option>
+            <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option selected value="5">5</option>
