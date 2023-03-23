@@ -9,3 +9,29 @@ background-color: #6cffe4;
  .hidden {
      display: none;
  }
+
+ .container{
+     border: 2px solid black;
+     margin-bottom: 1em;
+     margin-top: 1em;
+     padding: 1em;
+     display: flex;
+     justify-content: space-evenly;
+     align-items: center;
+     background-color: deepskyblue;
+     width: 70%;
+     height: 90%;
+ }
+
+ h5, h3{
+     background-color: deepskyblue;
+ }
+
+ button{
+     color: ghostwhite;
+     background-color: cadetblue;
+     border-radius: 15%;
+     border: 1px solid lightgray;
+     padding: 5px 5px;
+
+ }

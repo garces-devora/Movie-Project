@@ -16,18 +16,14 @@ function getMovies() {
     fetch("https://pollen-pumped-brace.glitch.me/movies")
         .then(resp => resp.json())
         .then(data => {
-            // console.log('https://pollen-pumped-brace.glitch.me/movies');
+            console.log("before for loop:" + 'https://pollen-pumped-brace.glitch.me/movies');
             let html='';
 
             for (i = 0; i < data.length; i++) {
                 // console.log(data[i].title);
                 html += `<div class="container">`
-                // html += `<div class="col-2">`
-                // html += `<div class="card-body">`
-                html += `<h5 class="card-title">Movie Title: ${data[i].title}</h5>`
-                html += `<h6 class="card-text">Rating: ${data[i].rating}</h6>`
-                // html += `<h6 class="card-text">Director: ${data[i].director}</h6>`
-                // html += `<h6 class="card-text">Genre: ${data[i].genre}</h6>`
+                html += `<h3 class="card-title current-movie">Movie Title: ${data[i].title}</h3>`
+                html += `<h5 class="card-text">Rating: ${data[i].rating}</h5>`
                 html += `<button name="Edit" type="submit" value="${data[i].id}" class="editBtn" >Edit Details</button>`
                 html += `<button type="submit" value="${data[i].id}" class="saveBtn hidden" >Save Changes</button>`
                 html += `<button name="Delete" class="deleteBtn" type="submit" value="${data[i].id}"  >Delete Movie</button>`
@@ -44,17 +40,18 @@ function getMovies() {
             //Edit btn click event
             $(".editBtn").click(function () {
                 let changeId = ($(this).val());
-                let title = $(this).parent().children('h5').first().html()
-                let rating = $(this).parent().children('h6').first().html()
+                let title = $(this).parent().children('h3').first().html()
+                let rating = $(this).parent().children('5').first().html()
                 $(this).parent().children('.saveBtn').toggleClass('hidden')
                 $(this).toggleClass('hidden')
-                $(this).parent().children('h5').first().html(`<input type='text' value='${title}' class="editTitleText">`);
-                $(this).parent().children('h6').first().html(changeRating(rating));
+                $(this).parent().children('h3').first().html(`<input type='text' value='${title}' class="editTitleText">`);
+                $(this).parent().children('h5').first().html(changeRating(rating));
 
                 // Save button click event
                 $(".saveBtn").click(function () {
                     let titleText = $('.editTitleText').val();
                     let rateSelected = $("#ratingDropDown").val();
+                    let changeId = $('.delete-movie-id').val();
                     editButton(changeId, titleText, rateSelected);
                 });
 
@@ -89,30 +86,30 @@ function getMovies() {
 
 // Function to add movies
 
-function newMovie(x) {
-    x.preventDefault()
+function newMovie(e) {
+    event.preventDefault()
     let movieObj = {
         title: newTitle.value,
         rating: newRating.value
     };
 
     // Fetch request to POST to movie list
-    fetch('https://pollen-pumped-brace.glitch.me/movies', {
+    fetch('https://pollen-pumped-brace.glitch.me/movies/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(movieObj),
-    }).then(() => fetch('https://pollen-pumped-brace.glitch.me/movies')).then(resp => resp.json()).then(() => getMovies());
+    }).then(() => fetch('https://pollen-pumped-brace.glitch.me/movies/')).then(resp => resp.json()).then(() => getMovies());
     newTitle.value = '';
 }
 
 // Delete movie
 function deleteMovie(movieId) {
-    fetch("https://pollen-pumped-brace.glitch.me/movies"
+    fetch("https://pollen-pumped-brace.glitch.me/movies/"
         + movieId, {
         method: "DELETE"
-    }).then(() => fetch('https://pollen-pumped-brace.glitch.me/movies')).then(resp => resp.json()).then(() => getMovies());
+    }).then(() => fetch('https://pollen-pumped-brace.glitch.me/movies/')).then(resp => resp.json()).then(() => getMovies());
 }
 
 //Edit button in getMovies function
@@ -123,19 +120,18 @@ function editButton(movieID, title, rating) {
         rating: rating,
     };
 
-    fetch('https://pollen-pumped-brace.glitch.me/movies'
-        + movieID, {
+    fetch('https://pollen-pumped-brace.glitch.me/movies/' + movieID,  {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(editedButton)
-    })
-        .then(() => fetch('https://pollen-pumped-brace.glitch.me/movies')).then(resp => resp.json()).then(() => getMovies());
-    // newTitle.value = "";
+    }).then(() => fetch('https://pollen-pumped-brace.glitch.me/movies')).then(resp => resp.json()).then(() => getMovies());
+    // // newTitle.value = "";
+    //     .then(() => getMovies())
 }
 
-submitNewMovie.addEventListener('click', newMovie)
+submitNewMovie.addEventListener('click', newMovie);
 
 // Changing Movie Rating
 function changeRating(rating) {

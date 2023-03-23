@@ -14,15 +14,19 @@
 </head>
 <body>
 
+<div>
+
+</div>
+
 <form class="">
     <label for="rating"></label>
     <select id="rating" name="rating" class="form-select col-12 bg-color-"
             aria-label="Default select example" style="font-family: Quicksand, sans-serif">
-        <option >*</option>
-        <option >**</option>
-        <option >***</option>
-        <option >****</option>
-        <option >*****</option>
+        <option >1</option>
+        <option >2</option>
+        <option >3</option>
+        <option >4</option>
+        <option >5</option>
     </select>
     <input type="text" id="add-movie" placeholder="Add movie here" value="">
     <input type="submit" id="submit-movie">
@@ -30,7 +34,7 @@
 
 <div class="loading-image"><img src="images/loading-image.gif" class="projector" id="reload"></div>
 
-<div id="movies"></div>
+<div id="movies" class="row d-flex justify-content-center"></div>
 
 <!--jQuery-->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
